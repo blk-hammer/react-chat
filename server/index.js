@@ -2,7 +2,6 @@ const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
 const cors = require("cors");
-const fs = require("fs");
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 
@@ -37,11 +36,6 @@ io.on("connect", (socket) => {
     });
 
     callback();
-  });
-
-  socket.on("user image", (image) => {
-    const user = getUser(socket.id);
-    io.sockets.emit("addImage", user, image);
   });
 
   socket.on("sendMessage", (message, callback) => {
